@@ -1,6 +1,6 @@
 
 #! /bin/bash
-wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo
+wget -O /etc/yum.repos.d/virtualbox.repo http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo
 yum -y update && yum -y install epel-release \
 gcc \
 dkms \ 
