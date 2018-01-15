@@ -8,6 +8,7 @@ printf "\n\n\n\n"
 sleep 3
 
 scripts/installing-java.sh
+
 clear
 printf "\n\n\n\n"
 echo " UPDATING YOUR SYSTEM"

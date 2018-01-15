@@ -28,6 +28,5 @@ echo "Your SYSTEM-PATH=" $PATH
 printf "\n\n"
 echo " YOUR JAVA ENVIRONMENT IS SET UP!! "
 printf "\n\n"
-source ~/.bash_profile
 sleep 10
 clear
