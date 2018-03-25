@@ -13,7 +13,7 @@ sudo rm -rf /opt/jdk*
 yum install -y net-tools wget vim 
 sudo wget --no-cookies --no-check-certificate --header \
 		"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-                "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz"
+                "http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz?AuthParam=1521939559_d3273956ca3e44d499a1b7dd5cca521c"
 sudo tar xzf jdk-8u151-linux-x64.tar.gz && rm -f jdk*.tar.gz
 cd  /opt/jdk1.8.0_151/
 clear
