@@ -11,15 +11,21 @@ printf "\n\n"
 cd /opt
 sudo rm -rf /opt/jdk*
 yum install -y net-tools wget vim 
-sudo wget --no-cookies --no-check-certificate --header \
-		"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-                "http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz?AuthParam=1521939559_d3273956ca3e44d499a1b7dd5cca521c"
-sudo tar xzf jdk-8u151-linux-x64.tar.gz && rm -f jdk*.tar.gz
-cd  /opt/jdk1.8.0_151/
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98
+tar -xvf jdk-8u161-linux-x64.tar.gz
+mv jdk1.8.0_161 java && cd java
+
 clear
-echo "export PATH=$PATH:/opt/jdk1.8.0_151/bin:/opt/jdk1.8.0_151/jre/bin" > ~/.bashrc
-echo "export JAVA_HOME=/opt/jdk1.8.0_151" >> ~/.bashrc
-echo "export JRE_HOME=/opt/jdk1.8.0_151/jre" >> ~/.bashrc
+ alternatives --install /usr/bin/java java /opt/java/bin/java 2
+# alternatives --config java
+ alternatives --install /usr/bin/jar jar /opt/java/bin/jar 2
+ alternatives --install /usr/bin/javac javac /opt/java/bin/javac 2
+ alternatives --set jar /opt/java/bin/jar
+ alternatives --set javac /opt/java/bin/javac
+
+export JAVA_HOME=/opt/java
+export JRE_HOME=/opt/java/jre
+export PATH=$PATH:/opt/java/bin:/opt/java/jre/bin
 echo "  JAVA IS INSTALLED"
 printf "\n\n\n"
 echo "Your JAVA-HOME=" $JAVA_HOME
