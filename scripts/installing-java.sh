@@ -11,7 +11,7 @@ printf "\n\n"
 cd /opt
 sudo rm -rf /opt/jdk*
 yum install -y net-tools wget vim 
-wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
 tar -xvf jdk-8u161-linux-x64.tar.gz
 mv jdk1.8.0_161 java && cd java
 
