@@ -73,4 +73,10 @@ rm -rf /etc/kubernetes/*.conf /etc/kubernetes/manifests/*
 #### YOUR GAME START FROM HERE..
 ####USE THE TOKEN PROVIDED TO AND RUN IT IN YOUR SALVE
 kubeadm init
+export KUBECONFIG=/etc/kubernetes/admin.conf
 
+######POST INSTALLATION
+#######INSTALLING K8S ADDONS
+#######DONT WORRY ITS OFFICIAL
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
