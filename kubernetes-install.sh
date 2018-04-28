@@ -5,6 +5,9 @@ echo "MAINTAINER PRAKASH"
 #ifconfig -a
 #cat /sys/class/dmi/id/product_uuid
 
+#####COMPLETELY OPTIONAL -- UPDATING THE APPLICATION / REPO
+yum update -y
+
 #####STARTING AND ENABLING DOCKER
 yum install -y docker
 systemctl enable docker && systemctl start docker
@@ -62,14 +65,11 @@ swapoff -a
 systemctl daemon-reload
 systemctl restart kubelet
 
-#####COMPLETELY OPTIONAL -- I WOULD RECOMMAND TO UPDATE BEFORE INITIALIZING YOUR CLUSTER 
-yum update -y
-
 ####IF YOUR SYSTEM IS MESSED WITH PREVIOUS INSTALL
 ####BELOW COMMANDS WILL TAKE CARE ----CHEERS
 kubeadm reset
 rm -rf /etc/kubernetes/*.conf /etc/kubernetes/manifests/*
-
+clear
 #### YOUR GAME START FROM HERE..
 ####USE THE TOKEN PROVIDED TO AND RUN IT IN YOUR SALVE
 kubeadm init
@@ -78,5 +78,16 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 ######POST INSTALLATION
 #######INSTALLING K8S ADDONS
 #######DONT WORRY ITS OFFICIAL
-
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+export KUBECONFIG=/etc/kubernetes/admin.conf
+echo "====================================================================="
+echo "====================================================================="
+echo " K8S is installed"
+echo "........!!!!! If you get the below error, run the below command" 
+echo " ERROR ==> The connection to the server localhost:8080 was refused - did you specify the right host or port?"
+echo " COMMAND ==> export KUBECONFIG=/etc/kubernetes/admin.conf "
+echo "====================================================================="
+echo "====================================================================="
+sleep 5
+echo " ==========================You are all set=========================="
+sleep 20
