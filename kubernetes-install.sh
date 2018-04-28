@@ -80,14 +80,14 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 #######DONT WORRY ITS OFFICIAL
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 export KUBECONFIG=/etc/kubernetes/admin.conf
-echo "====================================================================="
-echo "====================================================================="
+echo "============================================================================================================"
+echo "============================================================================================================"
 echo " K8S is installed"
 echo "........!!!!! If you get the below error, run the below command" 
 echo " ERROR ==> The connection to the server localhost:8080 was refused - did you specify the right host or port?"
 echo " COMMAND ==> export KUBECONFIG=/etc/kubernetes/admin.conf "
-echo "====================================================================="
-echo "====================================================================="
+echo "============================================================================================================="
+echo "============================================================================================================="
 sleep 5
-echo " ==========================You are all set=========================="
+echo "===============================================YOU ARE ALL SET==============================================="
 sleep 20
