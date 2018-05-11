@@ -101,7 +101,7 @@ sed -i "s/cgroup-driver=systemd/cgroup-driver=`cat docker_cgroup`/g" /etc/system
 sed -i "s/cgroup-driver=cgroupfs/cgroup-driver=`cat docker_cgroup`/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
 echo "==================================================================================================="
-echo "Your Kubernetes Cgroup  ============= `cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf | grep cgroup-driver`"    
+echo "Your Kubernetes Cgroup  ============= `cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf | grep cgroup-driver | cut -d " " -f2`"    
 echo "==================================================================================================="
 echo "==================================================================================================="
 sleep 10
