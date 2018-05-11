@@ -120,10 +120,10 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 
 ######COPYING KUBECONFIG IN $HOME
 ######--BEING CLEVER --- LOL
-cp etc/kubernetes/admin.conf $HOME/
+cp -rp etc/kubernetes/admin.conf $HOME/admin.conf
 
 ####POST INSTALLATION WORK FOR BRINGING DNS UP
-#kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 echo "============================================================================================================"
