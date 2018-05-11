@@ -1,12 +1,12 @@
 #! /bin/bash
 clear
-echo "MAINTAINER PRAKASH"
+echo "MAINTAINER == PRAKASH =="
 /usr/bin/sleep 20
 #ifconfig -a
 #cat /sys/class/dmi/id/product_uuid
 
 #######REMOVING YOUR STALE APPLICATION
-sudo yum remove docker \
+sudo yum remove -y docker \
                   docker-client \
                   docker-client-latest \
                   docker-common \
@@ -85,24 +85,26 @@ sysctl --system
 ######YOU CAN CHECK CGROUP OF KUBERNATES BY ISSUING THE FOLLOWING COMMAND
 #cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
-##### YOU CAN FIX THE CGROUP OF KUBERNATES BY ISSUING THE FOLLOWING COMMAND
-##### MY ASSUMPTION HERE IS DOCKER IS USING SYSTEMD / CHANGE IT ACCORDINGLY
-#####OTHERWISE YOU WILL SUFFER A LOT AS I DID :)
+#####HERE I CHECKED CGROUP OF DOCKER
+#####AND REPLACE THE SAME FOR KUBERNETSS
+#####OTHERWISE YOU WILL SUFFER AS I DID :)
+
+
+docker info | grep cgroup | cut -d':' -f2 > docker_cgroup
 clear
+echo "==================================================================================================="
+echo "==================================================================================================="
+echo "Your Docker Cgroup  ============= `cat docker_cgroup`"
+echo "==================================================================================================="
+sleep 4
+sed -i "s/cgroup-driver=systemd/cgroup-driver=`cat docker_cgroup`/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+sed -i "s/cgroup-driver=cgroupfs/cgroup-driver=`cat docker_cgroup`/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
-
-
-docker_cgroup=docker info | grep cgroup | cut -d':' -f2
-echo "docker-cgroup = $docker_cgroup"
-sleep 5
-
-
-sed -i "s/cgroup-driver=systemd/cgroup-driver=$docker_cgroup/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-sed -i "s/cgroup-driver=cgroupfs/cgroup-driver=$docker_cgroup/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-    
-cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 
-
-sleep 20
+echo "==================================================================================================="
+echo "Your Kubernetes Cgroup  ============= `cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf | grep cgroup-driver`"    
+echo "==================================================================================================="
+echo "==================================================================================================="
+sleep 10
 
 #####RESTARTING DAEMON AND KUBELET
 systemctl daemon-reload
@@ -111,19 +113,19 @@ systemctl restart kubelet
 
 #### YOUR GAME START FROM HERE..
 ####USE THE TOKEN PROVIDED TO AND RUN IT IN YOUR SALVE
-#kubeadm init
+kubeadm init
 
 #####EXPORTING KUBECONFIG
-#export KUBECONFIG=/etc/kubernetes/admin.conf
+export KUBECONFIG=/etc/kubernetes/admin.conf
 
 ######COPYING KUBECONFIG IN $HOME
 ######--BEING CLEVER --- LOL
-#cp etc/kubernetes/admin.conf $HOME/
+cp etc/kubernetes/admin.conf $HOME/
 
 ####POST INSTALLATION WORK FOR BRINGING DNS UP
 #kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
-#export KUBECONFIG=/etc/kubernetes/admin.conf
+export KUBECONFIG=/etc/kubernetes/admin.conf
 echo "============================================================================================================"
 echo "============================================================================================================"
 echo " K8S is installed"
