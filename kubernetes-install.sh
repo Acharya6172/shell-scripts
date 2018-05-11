@@ -116,7 +116,8 @@ systemctl restart kubelet
 kubeadm init
 
 #####EXPORTING KUBECONFIG
-export KUBECONFIG=/etc/kubernetes/admin.conf
+#####OR YOU CAN EXPORT WHEREVER YOU WANT :)
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> $HOME/.bashrc
 
 ######COPYING KUBECONFIG IN YOUR HOME
 ######--BEING CLEVER --- LOL
