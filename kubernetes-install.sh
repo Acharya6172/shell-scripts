@@ -26,6 +26,11 @@ kubeadm reset
 rm -rf /etc/kubernetes/*.conf /etc/kubernetes/manifests/*
 clear
 
+######INSTALLING DOCKER DEPENDENCIES
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+
 #####ADDING DOCKER REPO
 sudo yum-config-manager \
     --add-repo \
@@ -44,11 +49,6 @@ EOF
 
 #####COMPLETELY OPTIONAL -- UPDATING THE APPLICATION / REPO
 yum update -y
-
-######INSTALLING DOCKER DEPENDENCIES
-sudo yum install -y yum-utils \
-  device-mapper-persistent-data \
-  lvm2
 
 #####INSTALLING PACKAGES
 yum install -y docker-ce \
