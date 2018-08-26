@@ -113,22 +113,18 @@ systemctl restart kubelet
 
 #### YOUR GAME START FROM HERE..
 ####USE THE TOKEN PROVIDED TO AND RUN IT IN YOUR SALVE
-kubeadm init
+kubeadm init --apiserver-advertise-address $(hostname -I | cut -d " " -f2) --pod-network-cidr=192.168.0.0/16
 
 #####EXPORTING KUBECONFIG
 #####OR YOU CAN EXPORT WHEREVER YOU WANT :)
-echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> $HOME/.bashrc
-
-######COPYING KUBECONFIG IN YOUR HOME
-######--BEING CLEVER --- LOL
-
-cp -rp /etc/kubernetes/admin.conf $HOME/admin.conf
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+export KUBECONFIG=/etc/kubernetes/admin.conf
 
 ####POST INSTALLATION WORK FOR BRINGING DNS UP
 #kubectl apply --filename https://git.io/weave-kube
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
-
-export KUBECONFIG=/etc/kubernetes/admin.conf
+kubectl apply -f "https://docs.projectcalico.org/v3.0/getting-started/kubernetes/installation/hosted/kubeadm/1.7/calico.yaml" 
 echo "============================================================================================================"
 echo "============================================================================================================"
 echo " K8S is installed"
