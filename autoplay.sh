@@ -6,15 +6,14 @@ printf "\n"
 printf "\n\t\t\t Maintainer PRAKASH POUDEL"
 printf "\n\n\n\n"
 sleep 3
-
-scripts/installing-java.sh
-
 clear
 printf "\n\n\n\n"
 echo " UPDATING YOUR SYSTEM"
 echo "UPDATING YOUR REPO GIVES THE LATEST PACKAGES"
 sleep 5
 suoo yum update -y
+#scripts/installing-java.sh
+sudo yum install java-1.8.0-openjdk -y
 clear
 echo " Installing the following Package"
 printf "\n\tGIT\n\tMAVEN\n\tANSIBLE\n\tJENKINS\n\tAnd all their Dependencies needed . . ."
@@ -32,8 +31,8 @@ sudo yum install -y git \
                python-devel \
                python-pip
 
-sudo systemctl restart jenkins
-sudo systemctl restart docker
+sudo systemctl restart jenkins && systemctl enable jenkins
+sudo systemctl restart docker && systemctl enable docker
 clear
 echo "Following Packages are installed:"
 printf "\n\tGIT\n\tMAVEN\n\tANSIBLE\n\tJENKINS\n\tAnd all their Dependencies needed . . .\n\n"
