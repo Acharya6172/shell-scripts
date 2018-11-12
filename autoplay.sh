@@ -16,7 +16,7 @@ suoo yum update -y
 sudo yum install java-1.8.0-openjdk -y
 clear
 echo " Installing the following Package"
-printf "\n\tGIT\n\tMAVEN\n\tANSIBLE\n\tJENKINS\n\tAnd all their Dependencies needed . . ."
+printf "\n\tGIT\n\tMAVEN\n\tANSIBLE\n\tJENKINS\n\tDOCKERS\n\tPYTHON\n\tPYTHON-DEVL\n\tPYTHON-PIP\n\tAnd all their Dependencies needed . . ."
 sleep 10
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
 sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
